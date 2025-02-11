@@ -1,5 +1,5 @@
 # Initial coder: Stephanie Sarria 101216262
-# Signed by: Kit Horeczy 101189904,
+# Signed by: Kit Horeczy 101189904, Aditi Manjunath Keertani 101202033
 
 import string
 from typing import List
