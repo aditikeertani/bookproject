@@ -1,0 +1,71 @@
+# Initial coder: Stephanie Sarria 101216262
+# Signed by: Kit Horeczy 101189904,
+
+import string
+from typing import List
+
+def book_category_dictionary(filename: str)-> dict:
+    """
+    Returns a dictionary of every book with the category entered along with a file of books.
+    >>> book_category_dictionary("google_books_dataset.csv")
+    book_dictionary = {
+    "Fiction":[ {"title": "Antiques Roadkill: A Trash 'n' Treasures Mystery","author": " Barbara Allan","language ": "English","rating": 3.3,"publisher": " Kensington Publishing Corp.","pages": 288}
+
+    """
+    category_list = []
+    count = 0
+    book_dictionary = {}
+    infile = open(filename, 'r')
+    for line in infile:
+        if count != 0:
+            line_list = line.split(",")
+            temp_list = []
+            
+            mini_dict = {"title": line_list[0],
+                     "author": line_list[1],
+                     "rating": line_list[2],
+                     "publisher": line_list[3],
+                     "pages": line_list[4],
+                     "category": line_list[5],
+                     "language": line_list[6].rstrip("\n")}
+            
+            pages = mini_dict["pages"]
+            new_pages = int(pages)
+            mini_dict.update({"pages":new_pages})
+            
+            rating = mini_dict["rating"]
+            if rating != "N/A":
+                new_rating = float(rating)
+                mini_dict.update({"rating":new_rating})
+
+            title = mini_dict["title"]
+            author = mini_dict["author"]
+            rating = mini_dict["rating"]
+            publisher = mini_dict["publisher"]
+            pages = mini_dict["pages"]
+            category = mini_dict["category"]  
+            language = mini_dict["language"]
+            
+            if mini_dict["category"] not in book_dictionary.keys():
+                book_dictionary.update({category: [{'title':title,
+                                                    'author':author,
+                                                    'rating':rating,
+                                                    'publisher':publisher,
+                                                    'pages':pages,
+                                                    'language':language}]})
+                
+            else:
+                book_dictionary.get(category).append({'title':title,
+                                                      'author':author,
+                                                      'rating':rating,
+                                                      'publisher':publisher,
+                                                      'pages':pages,
+                                                      'language':language})
+                
+        else:
+            count+= 1
+            
+    infile.close()
+    return book_dictionary
+#For ease of ensuring it functions
+print(book_category_dictionary("google_books_dataset.csv"))
