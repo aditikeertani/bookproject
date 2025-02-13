@@ -21,7 +21,7 @@ stephsarria@cmail.carleton.ca
 ------------------------------------------------
 
 Python 3.9 or later must be installed.
-Only bult-in Python Modules are used.
+Only built-in Python Modules are used.
 
 #### Usage:
 ------------------------------------------------
